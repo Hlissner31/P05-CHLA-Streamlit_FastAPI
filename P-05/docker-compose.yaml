@@ -1,0 +1,26 @@
+services:
+  frontend:
+    build: Frontend  # Updated to "Frontend"
+    ports:
+      - 8501:8501
+    networks:
+      - AIservice
+    depends_on:
+      - backend
+    volumes:
+      - ./Frontend:/app
+      - ./storage:/storage
+
+  backend:
+    build: Backend  # Updated to "Backend"
+    ports:
+      - 8000:8000
+    networks:
+      - AIservice
+    volumes:
+      - ./Backend:/app
+      - ./storage:/storage
+
+networks:
+  AIservice:
+    driver: bridge
